@@ -1,7 +1,6 @@
 # python-challenge
 This is a set of programs that analyzes bank and election data while learning basic python.
 
-======
 PyBank
 ======
 
@@ -32,7 +31,6 @@ Another thing to note about my program is that I wanted to find a way to format 
 Finally, the information is printed to the terminal and written to a text file.
 
 
-======
 PyPoll
 ======
 

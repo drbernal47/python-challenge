@@ -17,7 +17,13 @@ b – a, c – b, d – c, e – d
 
 Then you would add these values and divide by the number of changes measured. Notice what happens to the sum of these values when we rearrange them:
 
-(b – a) + (c – b) + (d – c) + (e – d) = b - a + c - b + d - c + e - d = -a + b - b + c - c + d - d + e = e - a
+(b – a) + (c – b) + (d – c) + (e – d) =
+
+b - a + c - b + d - c + e - d =
+
+-a + b - b + c - c + d - d + e =
+
+e - a
 
 We are left with the very last value, e, minus the very first value, a.
 

@@ -25,10 +25,12 @@ with open(bank_data_csv, 'r') as csvfile:
     last_month_profit = 0
 
     # Create variables to helps us track the greatest increase and decrease
-    greatest_profit_month = ""
-    greatest_loss_month = ""
-    greatest_profit = 0
-    greatest_loss = 0
+    greatest_increase_month = ""
+    greatest_decrease_month = ""
+    greatest_increase = 0
+    greatest_decrease = 0
+    current_change = 0
+    previous_profit = 0
 
     for row in csvreader:
 
@@ -38,18 +40,22 @@ with open(bank_data_csv, 'r') as csvfile:
         total_months += 1
         net_profit += row_profit
 
+        # These conditionals help us track the first and last month to calculate average change
         if total_months == 1:
             first_month_profit = row_profit
         else:
             last_month_profit = row_profit
 
-        if row_profit > greatest_profit:
-            greatest_profit = row_profit
-            greatest_profit_month = row_month
-
-        if row_profit < greatest_loss:
-            greatest_loss = row_profit
-            greatest_loss_month = row_month
+        # These conditionals compare change to see which months have greatest increase/decrease
+        if total_months > 1:
+            current_change = row_profit - previous_profit
+            if current_change > greatest_increase:
+                greatest_increase = current_change
+                greatest_increase_month = row_month
+            if current_change < greatest_decrease:
+                greatest_decrease = current_change
+                greatest_decrease_month = row_month
+        previous_profit = row_profit
         
 
 # Calculate average change over the period (using the mathematical formula)
@@ -68,8 +74,8 @@ print("----------------------------")
 print(f"Total Months: {total_months}")
 print(f"Total: {neg_format(net_profit)}")
 print(f"Average Change: {neg_format(average_change)}")
-print(f"Greatest Increase in Profits: {greatest_profit_month} {neg_format(greatest_profit)}")
-print(f"Greatest Decrease in Profits: {greatest_loss_month} {neg_format(greatest_loss)}")
+print(f"Greatest Increase in Profits: {greatest_increase_month} ({neg_format(greatest_increase)})")
+print(f"Greatest Decrease in Profits: {greatest_decrease_month} ({neg_format(greatest_decrease)})")
 
 
 # Path to write data to the Analysis folder
@@ -84,5 +90,5 @@ with open(output_path,'w') as txtfile:
     txtfile.write(f"\nTotal Months: {total_months}")
     txtfile.write(f"\nTotal: {neg_format(net_profit)}")
     txtfile.write(f"\nAverage Change: {neg_format(average_change)}")
-    txtfile.write(f"\nGreatest Increase in Profits: {greatest_profit_month} {neg_format(greatest_profit)}")
-    txtfile.write(f"\nGreatest Decrease in Profits: {greatest_loss_month} {neg_format(greatest_loss)}")
+    txtfile.write(f"\nGreatest Increase in Profits: {greatest_increase_month} ({neg_format(greatest_increase)})")
+    txtfile.write(f"\nGreatest Decrease in Profits: {greatest_decrease_month} ({neg_format(greatest_decrease)})")

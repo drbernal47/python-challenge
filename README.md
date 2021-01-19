@@ -28,7 +28,7 @@ e - a
 We are left with the very last value, e, minus the very first value, a.
 
 
-This program also finds the month with the greatest profit and the greatest loss (reporting both the month and the amount).
+This program also finds the month with the greatest increase and the greatest decrease (reporting both the month and the amount).
 
 
 Another thing to note about my program is that I wanted to find a way to format negative numbers and include the "$' symbol in the report, and I was able to do this by creating a function that returns a formatted string in either case (whether it is a profit or loss).
